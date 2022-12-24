@@ -5,7 +5,9 @@ def pascal_triangle(n):
     if n <= 0:
         return []
     
+
     triangle = [0] * n
+
 
     for i in range(n):
           # The first and last elements in each row are always 1
@@ -19,9 +21,3 @@ def pascal_triangle(n):
                 row[j] = triangle[i-1][j-1] + triangle[i-1][j]
         triangle.append(row)
     return triangle
-
-
-    
-    
-           
-           
