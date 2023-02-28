@@ -1,20 +1,33 @@
 def island_perimeter(grid):
-    if not grid:
-        return 0
-
+    """
+    Calculates the perimeter of an island
+    """
     perimeter = 0
-    for i in range(len(grid)):
-        for j in range(len(grid[i])):
-            if grid[i][j] == 1:
-                boundaries = 4
-                if i > 0 and grid[i-1][j] == 1:
-                    boundaries -= 1
-                if i < len(grid)-1 and grid[i+1][j] == 1:
-                    boundaries -= 1
-                if j > 0 and grid[i][j-1] == 1:
-                    boundaries -= 1
-                if j < len(grid[i])-1 and grid[i][j+1] == 1:
-                    boundaries -= 1
-                perimeter += boundaries
+    
+    for row in range(len(grid)):
+        for col in range(len(grid[0])):
+            if grid[row][col] == 1:
+                perimeter += check_adjacent_squares(grid, row, col)
+                
+    return perimeter
 
+
+def check_adjacent_squares(grid, row, col):
+    """
+    Checks the adjacent squares to the current square
+    """
+    perimeter = 0
+    
+    if col == 0 or grid[row][col-1] == 0:
+        perimeter += 1
+    
+    if col == len(grid[0]) - 1 or grid[row][col+1] == 0:
+        perimeter += 1
+    
+    if row == 0 or grid[row-1][col] == 0:
+        perimeter += 1
+        
+    if row == len(grid) - 1 or grid[row+1][col] == 0:
+        perimeter += 1
+        
     return perimeter
